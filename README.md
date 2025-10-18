@@ -12,5 +12,5 @@ So, I implemented backup system, 2 different menu depending on your role, and Au
 3. After opening that program, you can start open "daily_backup.py"**
 
 Okay for "AdvacedGameManage.py" you can start playing with it, However "daily_backup.py" is a bit tricky.
-For started, you have to prepare a folder in you "D:" directory named "project_backup", then you have activate the program every 1 AM.
-You can always improve this by integrating this into you machine to automate activate every 1 AM.
+For started, you have to prepare a folder in you "D:" directory named "project_backup", then you have to activate the program every 1 AM.
+You can always improve this by integrating this into your prefered machine to automatically activate every 1 AM.
