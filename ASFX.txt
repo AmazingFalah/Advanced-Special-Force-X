@@ -1,0 +1,53 @@
+create database ASFX;
+use ASFX;
+
+CREATE TABLE Register (
+    Reg_id INT AUTO_INCREMENT PRIMARY KEY,
+    Full_Name VARCHAR(100) NOT NULL,
+    Username VARCHAR(50) UNIQUE NOT NULL,
+    Email VARCHAR(100) UNIQUE NOT NULL,
+    Password VARCHAR(255) NOT NULL,
+    Date_Of_Birth DATE,
+    Role VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE Server (
+    SVR_id INT AUTO_INCREMENT PRIMARY KEY,
+    Reg_id INT,
+    SVR_Name VARCHAR(100) NOT NULL UNIQUE,
+    SVR_Code VARCHAR(20) NOT NULL,
+    SVR_Mode VARCHAR(50) NOT NULL,
+    SVR_Description TEXT,
+    FOREIGN KEY (Reg_id) REFERENCES Register(Reg_id) ON DELETE CASCADE
+);
+
+CREATE TABLE Inventory (
+    Inv_id INT AUTO_INCREMENT PRIMARY KEY,
+    Inv_Name VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE Equipment (
+    Reg_id INT,
+    Inv_id INT,
+    PRIMARY KEY (Reg_id),
+    FOREIGN KEY (Reg_id) REFERENCES Register(Reg_id) ON DELETE CASCADE,
+    FOREIGN KEY (Inv_id) REFERENCES Inventory(Inv_id)
+);
+
+CREATE TABLE Audit_Log (
+    Log_id INT AUTO_INCREMENT PRIMARY KEY,
+    Reg_id INT,
+    Action TEXT NOT NULL,
+    Timestamp DATETIME NOT NULL,
+    FOREIGN KEY (Reg_id) REFERENCES Register(Reg_id) ON DELETE CASCADE
+);
+
+INSERT INTO Register (Full_Name, Username, Email, Password, Date_Of_Birth, Role)
+VALUES
+('Test Player', 'TestPlayer', 'testplayer@example.com', '1234', NULL, 'player'),
+('Test Admin',  'TestAdmin',  'testadmin@example.com',  '4321', NULL, 'admin');
+
+INSERT INTO Inventory (Inv_Name) VALUES
+('Assault Rifle'),
+('Shotgun'),
+('Sniper Rifle');
